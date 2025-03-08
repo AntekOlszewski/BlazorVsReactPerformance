@@ -1,0 +1,21 @@
+﻿@page "/simpleComonents"
+@using System.Diagnostics
+@using BlazorPerformance.Components
+@inherits MessurableComponent
+
+<h1 class="text-xl mb-4">Blazor simple component</h1>
+<div style="display: flex;">
+    <div style="flex: 1; padding: 10px;">
+        @{
+            for (int i = 0; i < ElementsCount; i++)
+            {
+                <SimpleComonent Counter="@i"></SimpleComonent>
+            }
+        }
+    </div>
+    <div style="flex: 1; padding: 10px;">
+        <input type="number" @bind="ElementsCount" class="form-control" />
+        <button class="btn btn-primary" @onclick="Clear">Clear</button>
+        <button class="btn btn-primary" @onclick="ForceRender">Force Render</button>
+    </div>
+</div>

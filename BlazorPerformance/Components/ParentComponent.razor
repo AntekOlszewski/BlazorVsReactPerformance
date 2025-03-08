@@ -1,0 +1,9 @@
+﻿@for (int i = 0; i < ElementsCount; i++)
+{
+<BlazorPerformance.Components.SimpleComonent Counter="@i"></BlazorPerformance.Components.SimpleComonent>
+}
+
+@code {
+    [Parameter]
+    public int ElementsCount { get; set; }
+}

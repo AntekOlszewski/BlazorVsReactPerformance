@@ -1,0 +1,42 @@
+﻿@if (Start <= End)
+{
+    <span>@Text @Middle</span>
+    <div class="children">
+        <BinaryTreeComponent @ref="leftChild" Start="@Start" End="@(Middle - 1)"></BinaryTreeComponent>
+        <BinaryTreeComponent @ref="rightChild" Start="@(Middle + 1)" End="@End"></BinaryTreeComponent>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public int Start { get; set; }
+
+    [Parameter]
+    public int End { get; set; }
+
+    private int Middle => (Start + End) / 2;
+
+    private BinaryTreeComponent? leftChild;
+    private BinaryTreeComponent? rightChild;
+
+    private string Text = "Node";
+
+    public void ChangeText(string newText)
+    {
+        Text = newText;
+        StateHasChanged();
+    }
+
+    public void ChangeLeaves(string newText)
+    {
+        if (Start == End)
+        {
+            ChangeText(newText);
+        }
+        else
+        {
+            leftChild!.ChangeLeaves(newText);
+            rightChild!.ChangeLeaves(newText);
+        }
+    }
+}

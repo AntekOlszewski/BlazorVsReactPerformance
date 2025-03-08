@@ -1,0 +1,40 @@
+﻿@page "/binaryTree"
+@using System.Diagnostics
+@using BlazorPerformance.Components
+@inherits MessurableComponent
+
+<h1 class="text-xl mb-4">Blazor binary tree component</h1>
+<div style="display: flex;">
+    <div style="flex: 1; padding: 10px;">
+
+        <BinaryTreeComponent @ref="binaryTree" Start="1" End="ElementsCount"></BinaryTreeComponent>
+
+    </div>
+    <div style="flex: 1; padding: 10px;">
+        <input type="number" @bind="ElementsCount" class="form-control" />
+        <button class="btn btn-primary" @onclick="Clear">Clear</button>
+        <button class="btn btn-primary" @onclick="ForceRender">Force Render</button>
+        <button class="btn btn-primary" @onclick="UpdateRoot">Update root</button>
+        <button class="btn btn-primary" @onclick="UpdateLeaves">Update leaves</button>
+    </div>
+</div>
+
+@code{
+    private BinaryTreeComponent binaryTree;
+
+    private void UpdateRoot()
+    {
+        stopwatch.Restart();
+        binaryTree.ChangeText("Root");
+        stopwatch.Stop();
+        Console.WriteLine($"Updating root: {stopwatch.Elapsed.TotalMilliseconds.ToString("F2")} ms");
+    }
+
+    private void UpdateLeaves()
+    {
+        stopwatch.Restart();
+        binaryTree.ChangeLeaves("Leaf");
+        stopwatch.Stop();
+        Console.WriteLine($"Updating leaves: {stopwatch.Elapsed.TotalMilliseconds.ToString("F2")} ms");
+    }
+}
