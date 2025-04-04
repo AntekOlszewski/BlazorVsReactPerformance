@@ -72,6 +72,11 @@ export const BinaryTree: React.FC = () => {
         }, 0);
     };
 
+    const clearElements = () => {
+        setInputCount(0);
+        renderBinaryTree();
+    }
+
     return (
         <div className="p-4">
             <h2 className="text-lg mb-4">Binary Tree Rendering</h2>
@@ -86,6 +91,9 @@ export const BinaryTree: React.FC = () => {
             </button>
             <button onClick={() => changeRootText("Root")} className="p-2 bg-green-500 text-white rounded">
                 Change Root
+            </button>
+            <button onClick={() => clearElements()} className="p-2 bg-green-500 text-white rounded">
+                Clear
             </button>
             <button onClick={renderBinaryTree} className="p-2 bg-blue-500 text-white rounded ml-2">
                 Render
